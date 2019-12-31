@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Generate Random IPv4 Addresses</title>
+      <meta name="description" content="Generate Random IPv4 Addresses"/>
+      <meta name="keywords" content="random, ip, generate" />
+	  <link rel="canonical" href="http://maniam.github.io/network_tools" />
+      <meta name=viewport content="width=device-width, initial-scale=1">
+      <style type="text/css">
+         label {
+         display: inline-block;
+         width:200px;
+         text-align: left;
+         }
+         input {
+         display: inline-block;
+         text-align: left;
+         }
+      </style>
+	  <link rel='stylesheet' type='text/css' href='header_footer.css'>
+   </head>
+   
+   <body>
+      
+	  <ul id='nav'> </ul>
+	  
+	  <script type="text/javascript" src="header.js"></script>
+		 
+      <h1>Generate Random IPv4 Addresses</h1>
+	  
+	  <form onsubmit="return false;">
+         <p>Start:<br>
+         <input type='text' id='ip_start' value='0.0.0.0'/>
+		 <span id='not_valid_ip_start' style="background-color: yellow;"></span>
+		 </p>
+      </form>
+	  
+	  <form onsubmit="return false;">
+         <p>End:<br>
+         <input type='text' id='ip_end' value='255.255.255.255'/>
+		 <span id='not_valid_ip_end' style="background-color: yellow;"></span>
+		 </p>
+      </form>
+	  
+	  <form onsubmit="return false;">
+         <p>How many?:<br>
+         <input type='text' id='count' value='5'/>
+		 <span id='not_valid_count' style="background-color: yellow;"></span><br><br>
+		 <button onClick="generate();">Generate</button>
+		 </p>
+      </form>	  
+	
+	  <span id='ans'></span>
+	
+   </body>
+   
+   <script type="text/javascript" src="random_ip.js"></script>
+  
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Hash Calculator</title>
+      <meta name="description" content="Hash Calculator."/>
+      <meta name="keywords" content="hash, md5, sha, ripemd, whirlpool" />
+	  <link rel="canonical" href="http://maniam.github.io/network_tools" />
+      <meta name=viewport content="width=device-width, initial-scale=1">
+      <style type="text/css">
+         label {
+         display: inline-block;
+         width:200px;
+         text-align: left;
+         }
+         input {
+         display: inline-block;
+         text-align: left;
+         }
+      </style>
+	  <link rel='stylesheet' type='text/css' href='header_footer.css'>
+   </head>
+   
+   <body>
+		 
+	  <ul id='nav'> </ul>
+	  
+	  <script type="text/javascript" src="header.js"></script>
+		  
+      <h1>Hash Calculator</h1>
+	  
+      <form onsubmit="return false;">		 
+		 <label>Hash input (string):</label> <br>
+		 <textarea id="input_str" rows="6" cols="40" onkeyup='calculate()' >this is a sample string</textarea><br>
+		 
+		 <p>Hash input (file):
+		 <button onClick="browse_file();">Browse</button><br>
+		 </p>
+		 
+      </form>	  
+	  
+	  <table  bgcolor="#EEEEEE" cellpadding="2" cellspacing="2">
+	     <tr>
+            <td><b>Hash Name</b></td>
+            <td><b>Hash Length</b></td>
+			<td><b>Hash Value</b></td>
+         </tr>
+		 
+         <td style="line-height:10px;" colspan=3>&nbsp;</td>
+		 
+         <tr>
+            <td>MD2</td>
+			<td>16 bytes</td>			
+            <td id='md2'></td>
+         </tr>		 
+		 <tr>
+            <td>MD4</td>
+			<td>16 bytes</td>			
+            <td id='md4'></td>
+         </tr>		 
+		 <tr>
+            <td>MD5</td>
+			<td>16 bytes</td>			
+            <td id='md5'></td>
+         </tr>
+		 <tr>
+            <td>MD6-128</td>
+			<td>16 bytes</td>			
+            <td id='md6-128'></td>
+         </tr>
+		 <tr>
+            <td>MD6-256</td>
+			<td>32 bytes</td>			
+            <td id='md6-256'></td>
+         </tr>
+		 <tr>
+            <td>MD6-512</td>
+			<td>64 bytes</td>			
+            <td id='md6-512'></td>
+         </tr>
+		 
+         <td style="line-height:10px;" colspan=3>&nbsp;</td> 
+		 
+		 <tr>
+            <td>SHA1</td>
+			<td>20 bytes</td>			
+            <td id='sha1'></td>
+         </tr>		 	 
+		 <tr>
+            <td>SHA224</td>
+			<td>28 bytes</td>			
+            <td id='sha224'></td>
+         </tr>
+		 <tr>
+            <td>SHA256</td>
+			<td>32 bytes</td>			
+            <td id='sha256'></td>
+         </tr>
+		 <tr>
+            <td>SHA384</td>
+			<td>48 bytes</td>			
+            <td id='sha384'></td>
+         </tr>
+		 <tr>
+            <td>SHA512</td>
+			<td>64 bytes</td>			
+            <td id='sha512'></td>
+         </tr>	 
+		 <tr>
+            <td>SHA3-224</td>
+			<td>28 bytes</td>			
+            <td id='sha3-224'></td>
+         </tr>	
+		 <tr>
+            <td>SHA3-256</td>
+			<td>32 bytes</td>			
+            <td id='sha3-256'></td>
+         </tr>	
+		 <tr>
+            <td>SHA3-384</td>
+			<td>48 bytes</td>			
+            <td id='sha3-384'></td>
+         </tr>	
+		 <tr>
+            <td>SHA3-512</td>
+			<td>64 bytes</td>			
+            <td id='sha3-512'></td>
+         </tr>
+		 
+		 <td style="line-height:10px;" colspan=3>&nbsp;</td> 
+		 
+		 <tr>
+            <td>RIPEMD-128</td>
+			<td>16 bytes</td>			
+            <td id='ripemd-128'></td>
+         </tr>
+		 <tr>
+            <td>RIPEMD-160</td>
+			<td>20 bytes</td>			
+            <td id='ripemd-160'></td>
+         </tr>
+		 <tr>
+            <td>RIPEMD-256</td>
+			<td>32 bytes</td>			
+            <td id='ripemd-256'></td>
+         </tr>
+		 <tr>
+            <td>RIPEMD-320</td>
+			<td>40 bytes</td>			
+            <td id='ripemd-320'></td>
+         </tr>
+		 
+		 <td style="line-height:10px;" colspan=3>&nbsp;</td> 
+		 
+		 <tr>
+            <td>Whirlpool</td>
+			<td>64 bytes</td>			
+            <td id='whirlpool'></td>
+         </tr>		
+
+		 <tr>
+            <td>NTLM</td>
+			<td>16 bytes</td>			
+            <td id='ntlm'></td>
+         </tr>	
+		 
+		 <td style="line-height:10px;" colspan=3>&nbsp;</td> 
+				 
+		 <tr>
+            <td>HAVAL-3-128</td>
+			<td>16 bytes</td>			
+            <td id='haval-3-128'></td>
+         </tr>	
+		 <tr>
+            <td>HAVAL-3-160</td>
+			<td>20 bytes</td>			
+            <td id='haval-3-160'></td>
+         </tr>	
+		 <tr>
+            <td>HAVAL-3-192</td>
+			<td>24 bytes</td>			
+            <td id='haval-3-192'></td>
+         </tr>	
+		 <tr>
+            <td>HAVAL-3-224</td>
+			<td>28 bytes</td>			
+            <td id='haval-3-224'></td>
+         </tr>	
+		 <tr>
+            <td>HAVAL-3-256</td>
+			<td>32 bytes</td>			
+            <td id='haval-3-256'></td>
+         </tr>		 
+		 
+		 <td style="line-height:10px;" colspan=3>&nbsp;</td> 
+				 
+		 <tr>
+            <td>HAVAL-4-128</td>
+			<td>16 bytes</td>			
+            <td id='haval-4-128'></td>
+         </tr>	
+		 <tr>
+            <td>HAVAL-4-160</td>
+			<td>20 bytes</td>			
+            <td id='haval-4-160'></td>
+         </tr>	
+		 <tr>
+            <td>HAVAL-4-192</td>
+			<td>24 bytes</td>			
+            <td id='haval-4-192'></td>
+         </tr>	
+		 <tr>
+            <td>HAVAL-4-224</td>
+			<td>28 bytes</td>			
+            <td id='haval-4-224'></td>
+         </tr>	
+		 <tr>
+            <td>HAVAL-4-256</td>
+			<td>32 bytes</td>			
+            <td id='haval-4-256'></td>
+         </tr>
+		 
+		 <td style="line-height:10px;" colspan=3>&nbsp;</td> 
+				 
+		 <tr>
+            <td>HAVAL-5-128</td>
+			<td>16 bytes</td>			
+            <td id='haval-5-128'></td>
+         </tr>	
+		 <tr>
+            <td>HAVAL-5-160</td>
+			<td>20 bytes</td>			
+            <td id='haval-5-160'></td>
+         </tr>	
+		 <tr>
+            <td>HAVAL-5-192</td>
+			<td>24 bytes</td>			
+            <td id='haval-5-192'></td>
+         </tr>	
+		 <tr>
+            <td>HAVAL-5-224</td>
+			<td>28 bytes</td>			
+            <td id='haval-5-224'></td>
+         </tr>	
+		 <tr>
+            <td>HAVAL-5-256</td>
+			<td>32 bytes</td>			
+            <td id='haval-5-256'></td>
+         </tr>
+
+      </table>
+	  
+	  <br>
+	
+   </body>
+   
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+   <script src="hash/md2.js"></script>
+   <script src="hash/md4.js"></script>
+   <script src="hash/md5.js"></script>
+   <script src="hash/md6.js"></script>
+  
+   <script src="hash/sha1.js"></script>
+   <script src="hash/sha224.js"></script>
+   <script src="hash/sha256.js"></script>
+   <script src="hash/sha384.js"></script>
+   <script src="hash/sha512.js"></script>
+   <script src="hash/sha3.js"></script>
+  
+   <script src="hash/ripemd128.js"></script>
+   <script src="hash/ripemd160.js"></script>
+   <script src="hash/ripemd256.js"></script>
+   <script src="hash/ripemd320.js"></script>
+
+   <script src="hash/whirlpool.js"></script>
+   
+   <script type="text/javascript" src="hash.js"></script>
+  
+</html>
