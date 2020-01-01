@@ -1,7 +1,7 @@
 
    document.getElementById("nav").innerHTML =
-      "<li><a href='num_convert.html'>Number Base Converter</a></li>" +
-      "<li><a href='convert.html'>IPv4 Address Converter</a></li>" +
+      "<li><a href='nums.html'>Numbers</a></li>" +
+      "<li><a href='convert_ip.html'>IPv4 Address Converter</a></li>" +
 	  "<li><a href='addr_info.html'>IPv4 Address Information</a></li>" +
 	  "<li><a href='subnet_table.html'>Subnet Mask Table</a></li>" + 
       "<li><a href='subnet.html'>Subnetting Calculator</a></li>" +
