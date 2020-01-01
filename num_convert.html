@@ -16,7 +16,10 @@
          input {
          display: inline-block;
          text-align: left;
-         }
+         }	
+		 .mono {
+         font-family: monospace;
+         }		 
       </style>
 	  <link rel='stylesheet' type='text/css' href='header_footer.css'>
    </head>
@@ -46,6 +49,29 @@
 		 <input type='text' id='hex' onkeyup='convert("hex")' value='C0'>
 		 <span id='not_valid_hex' style="background-color: yellow;"></span><br><br>
       </form>	  
+	
+	  <h1>Negative Number Representation</h1>
+	  
+      <form onsubmit="return false;">		 
+	     <label>Negative Decimal:</label> -
+		 <input type='text' id='neg_dec' onkeyup='convert_neg()' value='10'>
+		 <span id='neg_not_valid_dec' style="background-color: yellow;"></span><br><br>
+      </form>	
+	  
+	  <table  bgcolor="#EEEEEE" cellpadding="2" cellspacing="1">
+         <tr>
+            <td>Binary (1's Complement):</td>
+            <td id='bin_1' class='mono'></td>
+         </tr>
+		 <tr>
+            <td>Binary (2's Complement):</td>
+            <td id='bin_2' class='mono'></td>
+         </tr>
+		 <tr>
+            <td>Binary (Sign-Magnitude):</td>
+            <td id='bin_sign_mag' class='mono'></td>
+         </tr>
+      </table>	  
 	
    </body>
    
