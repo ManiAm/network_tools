@@ -41,7 +41,7 @@
         X = [],
         C = [];
 
-    var md2 = function(message) {
+    var md2 = function(message) {		
         var code, i, j, k, t, L = 0,
             loop = 1,
             B,

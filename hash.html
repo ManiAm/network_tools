@@ -33,11 +33,16 @@
       <h1>Hash Calculator</h1>
 	  
       <form onsubmit="return false;">		 
-		 <label>Hash input (string):</label> <br>
-		 <textarea id="input_str" rows="6" cols="40" onkeyup='calculate()' >this is a sample string</textarea><br>
+		 <label>Hash input (string):</label>
+		 <span id='not_valid_str' style="background-color: yellow;"></span><br>
+		 <textarea id="input_str" rows="6" cols="40" onkeyup='calculate("str")' >this is a sample string</textarea><br><br>
+		 
+		 <label>Hash input (Hex bytes):</label> 
+		 <span id='not_valid_bytes' style="background-color: yellow;"></span><br>
+		 <textarea id="input_bytes" rows="6" cols="40" onkeyup='calculate("hex")' >DEADBEEF</textarea><br>
 		 
 		 <p>Hash input (file):
-		 <button onClick="browse_file();">Browse</button><br>
+		 <button onClick="calculate("file");">Browse</button><br>
 		 </p>
 		 
       </form>	  
