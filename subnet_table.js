@@ -1,5 +1,5 @@
 
-var t = "<table border='1'><tr> <td><b>Slash</b></td> <td><b>Decimal</b></td> <td><b>Wildcard</b></td> <td><b>Host ID Length</b></td> <td><b>Available Host Addresses</b></td> </tr>";
+var t = "<table border='1'><tr align='center'> <td><b>Slash</b></td> <td><b>Decimal</b></td> <td><b>Wildcard</b></td> <td><b>Host ID Length</b></td> <td><b>Available Host Addresses</b></td> </tr>";
 
 for (var slash = 0; slash <= 32; slash++) {
 	
@@ -7,11 +7,11 @@ for (var slash = 0; slash <= 32; slash++) {
 	var l = find_wildcard(u);
 	var host_addr = Math.max(0,(Math.pow(2,((32-slash)))-2));
 	
-    t += "<tr><td>" + "/" + slash + "</td>";
+    t += "<tr><td align='center'>" + "/" + slash + "</td>";
     t += "<td>" + u[0] + "." + u[1] + "." + u[2] + "." + u[3] + "</td>";
     t += "<td>" + l[0] + "." + l[1] + "." + l[2] + "." + l[3] + "</td>";
-    t += "<td>" + (32-slash) + "</td>";
-	t += "<td>" + numberWithCommas(host_addr) + "</td>";
+    t += "<td align='center'>" + (32-slash) + "</td>";
+	t += "<td align='center'>" + numberWithCommas(host_addr) + "</td>";
 }
 
 t += "</table>";
