@@ -167,4 +167,9 @@ function FormatNumberLength(num, length) {
     return r;
 }
 
-window.onload = convert_neg;
+function start() {
+	convert_neg();
+	convert("dec");
+}
+
+window.onload = start;
