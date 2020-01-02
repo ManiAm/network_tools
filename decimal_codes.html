@@ -17,6 +17,7 @@
          display: inline-block;
          text-align: left;
          }	
+		 #ans { font-family: monospace; }
 		 .mono {
          font-family: monospace;
          }		 
@@ -32,49 +33,65 @@
 	
 	  <form onsubmit="return false;">		 
          <label>Decimal Number:</label> 
-		 <input type='text' id='dec' onkeyup='convert("dec")' value='7'>
+		 <input type='text' id='dec' onkeyup='convert("dec")' value='789'>
 		 <span id='not_valid_dec' style="background-color: yellow;"></span><br><br>
+		 
+		 <label>Binary Number:</label> 
+		 <input type='text' id='bin' onkeyup='convert("bin")' size="80" readonly="readonly" class="mono">
+		 <span id='not_valid_bin' style="background-color: yellow;"></span><br><br>
       </form>	
 	
-      <h1>Weighted Codes</h1>
+      <h1>Weighted Decimal Codes</h1>
 	  
       <form onsubmit="return false;">		 
 		 <label>8 4 2 1 code (BCD):</label> 
-		 <input type='text' id='bcd' onkeyup='convert("bcd")' value='0111' size="80">
+		 <input type='text' id='bcd' onkeyup='convert("bcd")' size="80" readonly="readonly" class="mono">
 		 <span id='not_valid_bcd' style="background-color: yellow;"></span><br><br>
 		 
 		 <label>2 4 2 1 code (AIKEN):</label> 
-		 <input type='text' id='aiken' onkeyup='convert("aiken")' value='0111' size="80">
+		 <input type='text' id='aiken' onkeyup='convert("aiken")' size="80" readonly="readonly" class="mono">
 		 <span id='not_valid_aiken' style="background-color: yellow;"></span><br><br>
 		 
 		 <label>6 4 2 -3 code:</label> 
-		 <input type='text' id='642-3' onkeyup='convert("642-3")' value='0111' size="80">
+		 <input type='text' id='642-3' onkeyup='convert("642-3")' size="80" readonly="readonly" class="mono">
 		 <span id='not_valid_642-3' style="background-color: yellow;"></span><br><br>
 		 
 		 <label>5 4 2 1 code:</label> 
-		 <input type='text' id='5421' onkeyup='convert("5421")' value='0111' size="80">
+		 <input type='text' id='5421' onkeyup='convert("5421")' size="80" readonly="readonly" class="mono">
 		 <span id='not_valid_5421' style="background-color: yellow;"></span><br><br>	 
       </form>	  	  
 	  
-	  <h1>Non-Weighted Codes</h1>
+	  <h1>Non-Weighted Decimal Codes</h1>
 	  
       <form onsubmit="return false;">		 
 		 <label>Gray code:</label> 
-		 <input type='text' id='gray' onkeyup='convert("gray")' value='0111' size="80">
+		 <input type='text' id='gray' onkeyup='convert("gray")' size="80" readonly="readonly" class="mono">
 		 <span id='not_valid_gray' style="background-color: yellow;"></span><br><br>
 		 
 		 <label>Excess-3 Gray code:</label> 
-		 <input type='text' id='e3_gray' onkeyup='convert("e3_gray")' value='0111' size="80">
+		 <input type='text' id='e3_gray' onkeyup='convert("e3_gray")' size="80" readonly="readonly" class="mono">
 		 <span id='not_valid_e3_gray' style="background-color: yellow;"></span><br><br>
 		 
 		 <label>Excess-3 BCD code:</label> 
-		 <input type='text' id='e3_bcd' onkeyup='convert("e3_bcd")' value='0111' size="80">
+		 <input type='text' id='e3_bcd' onkeyup='convert("e3_bcd")' size="80" readonly="readonly" class="mono">
 		 <span id='not_valid_e3_bcd' style="background-color: yellow;"></span><br><br>
 		 
 		 <label>Johnson code:</label> 
-		 <input type='text' id='johnson' onkeyup='convert("johnson")' value='0111' size="80">
+		 <input type='text' id='johnson' onkeyup='convert("johnson")' size="80" readonly="readonly" class="mono">
 		 <span id='not_valid_johnson' style="background-color: yellow;"></span><br><br>	 
-      </form>	
+      </form>
+
+      <h1>Gray Code Generator</h1>
+	  
+      <form onsubmit="return false;">
+		 <p>How many bits? <br>
+		 <input type='text' id='gray_bits'>
+		 <span id='not_valid_gray_bits' style="background-color: yellow;"></span><br><br>		 
+		 <button onClick="gray_generate();">Generate</button>
+         </p> 
+      </form> 
+	  
+	  <span id='ans'></span>
 	
    </body>
    

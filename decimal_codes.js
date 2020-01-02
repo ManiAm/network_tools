@@ -1,154 +1,178 @@
 
 function convert(b) {
 	
-	document.getElementById("not_valid_bin").innerHTML = "";
-	document.getElementById("not_valid_oct").innerHTML = "";
 	document.getElementById("not_valid_dec").innerHTML = "";
-	document.getElementById("not_valid_hex").innerHTML = "";
+	document.getElementById("not_valid_bcd").innerHTML = "";
+	document.getElementById("not_valid_aiken").innerHTML = "";
+	document.getElementById("not_valid_642-3").innerHTML = "";	
+	document.getElementById("not_valid_5421").innerHTML = "";
+	document.getElementById("not_valid_gray").innerHTML = "";
+	document.getElementById("not_valid_e3_gray").innerHTML = "";
+	document.getElementById("not_valid_e3_bcd").innerHTML = "";
+	document.getElementById("not_valid_johnson").innerHTML = "";
 			
 	switch(b) {
 	
-    case "bin":    
-        var a = document.getElementById("bin").value;
-        a = a.replace(/^\s+|\s+$/g, "");
+	case "dec":    					
 		
-		// remove all spaces
-		a = a.replace(/ /g,'');
+		var line = document.getElementById("dec").value;
+
+		var bcd_lookup = [
+			'0000',
+			'0001',
+			'0010',
+			'0011',
+			'0100',
+			'0101',
+			'0110',
+			'0111',
+			'1000',
+			'1001'
+		];
 		
-		num_dec = parseInt(a, 2);
+		var aiken_lookup = [
+			'0000',
+			'0001',
+			'0010',
+			'0011',
+			'0100',
+			'1011',
+			'1100',
+			'1101',
+			'1110',
+			'1111'
+		];
 		
-		if (isNaN(num_dec) || num_dec < 0) {
-			document.getElementById("not_valid_bin").innerHTML = "<b>Invalid format!</b>";
-	        document.getElementById("oct").value = "";
-	        document.getElementById("dec").value = "";
-	        document.getElementById("hex").value = "";
-            return;
-		}	
+		var w6423_lookup = [
+			'0000',
+			'0101',
+			'0010',
+			'1001',
+			'0100',
+			'1011',
+			'0110',
+			'1101',
+			'1010',
+			'1111'
+		];
 		
-		document.getElementById("not_valid_bin").innerHTML = "";
-					
-        document.getElementById("oct").value = octWithSeperators(num_dec.toString(8));
-		document.getElementById("dec").value = decWithSeperators(num_dec.toString(10));
-	    document.getElementById("hex").value = num_dec.toString(16).toUpperCase();					
+		var w5421_lookup = [
+			'0000',
+			'0001',
+			'0010',
+			'0011',
+			'0100',
+			'0101',
+			'0110',
+			'0111',
+			'1011',
+			'1100'
+		];
+		
+		var e3_bcd_lookup = [
+			'0011',
+			'0100',
+			'0101',
+			'0110',
+			'0111',
+			'1000',
+			'1001',
+			'1010',
+			'1011',
+			'1100'
+		];
+		
+		var e3_gray_lookup = [
+			'0010',
+			'0110',
+			'0111',
+			'0101',
+			'0100',
+			'1100',
+			'1101',
+			'1111',
+			'1110',
+			'1010'
+		];
+		
+		var johnson_lookup = [
+			'00000',
+			'00001',
+			'00011',
+			'00111',
+			'01111',
+			'11111',
+			'11110',
+			'11100',
+			'11000',
+			'10000'
+		];
+		
+		document.getElementById("bin").value = binWithSeperators(parseInt(line, 10).toString(2));
+		document.getElementById("bcd").value = binWithSeperators(getWeightedCode(line, bcd_lookup));
+		document.getElementById("aiken").value = binWithSeperators(getWeightedCode(line, aiken_lookup));
+		document.getElementById("642-3").value = binWithSeperators(getWeightedCode(line, w6423_lookup));
+		document.getElementById("5421").value = binWithSeperators(getWeightedCode(line, w5421_lookup));
+		document.getElementById("e3_bcd").value = binWithSeperators(getWeightedCode(line, e3_bcd_lookup));
+		document.getElementById("e3_gray").value = binWithSeperators(getWeightedCode(line, e3_gray_lookup));
+		document.getElementById("johnson").value = binJohnsonWithSeperators(getWeightedCode(line, johnson_lookup));
+		
+		var ret = '';
+		var line_3 = line.replace(/^\s+/, '');
+		line_3 = line_3.replace(/\s+$/, '');
+		if (/(\d+)/.test(line_3)) {
+			var num = parseInt(line_3, 10);
+			var gray = (num ^ (num >> 1)).toString(2);
+			while (gray.length < 8) {
+				gray = "0" + gray;
+			}
+			ret += gray;
+		}
+		
+		document.getElementById("gray").value = binWithSeperators(ret);		
+		
+        break;
+		
+    case "bcd":    					
 		
         break;
   
-    case "oct":
-	    var a = document.getElementById("oct").value;
-        a = a.replace(/^\s+|\s+$/g, "");
-		
-		// remove all spaces
-		a = a.replace(/ /g,'');
-		
-		num_dec = parseInt(a, 8);
-		
-		if (isNaN(num_dec) || num_dec < 0) {
-			document.getElementById("not_valid_oct").innerHTML = "<b>Invalid format!</b>";
-	        document.getElementById("bin").value = "";
-	        document.getElementById("dec").value = "";
-	        document.getElementById("hex").value = "";
-            return;
-		}		
-		
-		document.getElementById("not_valid_oct").innerHTML = "";
-					
-        document.getElementById("bin").value = binWithSeperators(num_dec.toString(2));
-		document.getElementById("dec").value = decWithSeperators(num_dec.toString(10));
-	    document.getElementById("hex").value = num_dec.toString(16).toUpperCase();
+    case "aiken":
 		
         break;
   
-    case "dec":
-	    var a = document.getElementById("dec").value;
-        a = a.replace(/^\s+|\s+$/g, "");
-		
-		// remove all spaces
-		a = a.replace(/ /g,'');
-		
-		num_dec = parseInt(a, 10);
-		
-		if (isNaN(num_dec) || num_dec < 0) {
-			document.getElementById("not_valid_dec").innerHTML = "<b>Invalid format!</b>";
-	        document.getElementById("bin").value = "";
-	        document.getElementById("oct").value = "";
-	        document.getElementById("hex").value = "";
-            return;
-		}	
-		
-		document.getElementById("not_valid_dec").innerHTML = "";
-					
-        document.getElementById("bin").value = binWithSeperators(num_dec.toString(2));
-		document.getElementById("oct").value = octWithSeperators(num_dec.toString(8));
-	    document.getElementById("hex").value = num_dec.toString(16).toUpperCase();
+    case "642-3":
 		
         break;
 		
-    case "hex":
-	    var a = document.getElementById("hex").value;
-        a = a.replace(/^\s+|\s+$/g, "");
+    case "5421":
 		
-		// remove all spaces
-		a = a.replace(/ /g,'');
+        break;  
 		
-		num_dec = parseInt(a, 16);
+    case "gray":
 		
-		if (isNaN(num_dec) || num_dec < 0) {
-			document.getElementById("not_valid_hex").innerHTML = "<b>Invalid format!</b>";
-	        document.getElementById("bin").value = "";
-	        document.getElementById("oct").value = "";
-	        document.getElementById("dec").value = "";
-            return;
-		}	
+        break;  
 		
-		document.getElementById("not_valid_hex").innerHTML = "";
-					
-        document.getElementById("bin").value = binWithSeperators(num_dec.toString(2));
-		document.getElementById("oct").value = octWithSeperators(num_dec.toString(8));
-	    document.getElementById("dec").value = decWithSeperators(num_dec.toString(10));
+	case "e3_gray":
+		
+        break;  
+		
+	case "e3_bcd":
+		
+        break;  
+		
+	case "johnson":
 		
         break;  
 	}		
 }
 
-function convert_neg() {
-    var a = document.getElementById("neg_dec").value;
-    a = a.replace(/^\s+|\s+$/g, "");
-		
-	// remove all spaces
-	a = a.replace(/ /g,'');
-		
-	num_dec = parseInt(a, 10);
-		
-	if (isNaN(num_dec) || num_dec < 0) {
-		document.getElementById("neg_not_valid_dec").innerHTML = "<b>Invalid number!</b>";
-	    document.getElementById("bin_1").value = "";
-	    document.getElementById("bin_2").value = "";
-	    document.getElementById("bin_sign_mag").value = "";
-        return;
-	}
-	
-	if(num_dec > 2147483647) {
-		document.getElementById("neg_not_valid_dec").innerHTML = "<b>Number cannot excced 2147483647</b>";
-	    document.getElementById("bin_1").value = "";
-	    document.getElementById("bin_2").value = "";
-	    document.getElementById("bin_sign_mag").value = "";
-        return;
-	}
-	
-	document.getElementById("neg_not_valid_dec").innerHTML = "";
-			
-	document.getElementById("bin_1").innerHTML = binWithSeperators((~num_dec >>> 0).toString(2));
-	
-	var twos = (~num_dec + 1 >>> 0).toString(2);
-	document.getElementById("bin_2").innerHTML = binWithSeperators(FormatNumberLength(twos,32));
-	
-	var mag = FormatNumberLength(num_dec.toString(2), 32);
-	sign_mag = "<span style='color: red;'>1</span>" + mag.slice(1);
-	document.getElementById("bin_sign_mag").innerHTML = binWithSeperators(sign_mag);	
-}
-
 function binWithSeperators(x) {
     return x.replace(/\B(?=(\d{4})+(?!\d))/g, " ");
+}
+
+function binJohnsonWithSeperators(x) {
+    return x.replace(/\B(?=(\d{5})+(?!\d))/g, " ");
 }
 
 function octWithSeperators(x) {
@@ -167,4 +191,51 @@ function FormatNumberLength(num, length) {
     return r;
 }
 
-window.onload = convert_neg;
+function getWeightedCode(line, lookup) {
+    var ret = '';	
+	line = line.replace(/^\s+/, '');
+	line = line.replace(/\s+$/, '');
+	if (/(\d+)/.test(line)) {
+		var digits = line.split('');
+		for (var j = 0; j < digits.length; j++) {
+			ret += lookup[digits[j]].toString();
+		}
+	}
+	else {
+		ret += line;
+	}
+	return ret;
+}
+
+function gray_generate() {
+	
+    var val = document.getElementById("gray_bits").value;
+	var bits = parseInt(val, 10);
+	
+	if (isNaN(bits) || bits <= 0) {
+		document.getElementById("not_valid_gray_bits").innerHTML = "<b>Invalid number of bits!</b>";
+		return;
+	}	
+	
+	if (bits > 10) {
+		document.getElementById("not_valid_gray_bits").innerHTML = "<b>Do not use more than 10 bits for performance reasons!</b>";
+		return;
+	}	
+	
+	var arr = ["0<br>", "1<br>"];
+	
+	for (var r = 1; r < bits; r++) {	
+		var result = arr.concat(arr.slice().reverse());
+		for (var i = 0; i < arr.length; i++) {
+			result[i] = "0" + result[i];
+		}
+		for (var i = arr.length; i < result.length; i++) {
+			result[i] = "1" + result[i];
+		}	
+		arr = result;
+	}
+	
+	document.getElementById("ans").innerHTML = arr.join(' ');
+}
+
+window.onload = convert("dec");
