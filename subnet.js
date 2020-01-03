@@ -34,13 +34,13 @@ function calculate() {
     var d = find_broadcast(e, f);
 	
 	document.getElementById("netadd").innerHTML = print_ip(b);
-    document.getElementById("netmask").innerHTML = print_ip(a);
     document.getElementById("slash").innerHTML = "/" + c;
-    document.getElementById("broad").innerHTML = print_ip(d);
+	document.getElementById("netmask").innerHTML = print_ip(a);
+	document.getElementById("wild").innerHTML = print_ip(e);
+	document.getElementById("hosts").innerHTML = decWithSeperators(find_hosts(c).toString(10));
     document.getElementById("first").innerHTML = print_ip(next_add(b));
     document.getElementById("last").innerHTML = print_ip(prev_add(d));
-    document.getElementById("hosts").innerHTML = find_hosts(c);
-    document.getElementById("wild").innerHTML = print_ip(e)
+	document.getElementById("broad").innerHTML = print_ip(d);
 }
 
 function clean_mask(c) {
@@ -232,3 +232,7 @@ function prev_add(a) {
     }
     return a
 };
+
+function decWithSeperators(x) {
+    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
