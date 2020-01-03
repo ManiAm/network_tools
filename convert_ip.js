@@ -32,9 +32,9 @@ function convert(b) {
 		
 		document.getElementById("not_valid_addr").innerHTML = "";
 				
-		document.getElementById("bin").value = converted_dec.toString(2);
-		document.getElementById("oct").value = converted_dec.toString(8);
-		document.getElementById("dec").value = converted_dec.toString(10);
+		document.getElementById("bin").value = binWithSeperators(converted_dec.toString(2));
+		document.getElementById("oct").value = octWithSeperators(converted_dec.toString(8));
+		document.getElementById("dec").value = decWithSeperators(converted_dec.toString(10));
 		document.getElementById("hex").value = converted_dec.toString(16).toUpperCase();
         
 		break;
@@ -71,8 +71,8 @@ function convert(b) {
 		document.getElementById("not_valid_bin").innerHTML = "";
 					
 	    document.getElementById("addr").value = converted_ip;
-        document.getElementById("oct").value = num_dec.toString(8);
-		document.getElementById("dec").value = num_dec.toString(10);
+        document.getElementById("oct").value = octWithSeperators(num_dec.toString(8));
+		document.getElementById("dec").value = decWithSeperators(num_dec.toString(10));
 	    document.getElementById("hex").value = num_dec.toString(16).toUpperCase();					
 		
         break;
@@ -109,8 +109,8 @@ function convert(b) {
 		document.getElementById("not_valid_oct").innerHTML = "";
 					
 	    document.getElementById("addr").value = converted_ip;
-        document.getElementById("bin").value = num_dec.toString(2);
-		document.getElementById("dec").value = num_dec.toString(10);
+        document.getElementById("bin").value = binWithSeperators(num_dec.toString(2));
+		document.getElementById("dec").value = decWithSeperators(num_dec.toString(10));
 	    document.getElementById("hex").value = num_dec.toString(16).toUpperCase();
 		
         break;
@@ -147,8 +147,8 @@ function convert(b) {
 		document.getElementById("not_valid_dec").innerHTML = "";
 					
 	    document.getElementById("addr").value = converted_ip;
-        document.getElementById("bin").value = num_dec.toString(2);
-		document.getElementById("oct").value = num_dec.toString(8);
+        document.getElementById("bin").value = binWithSeperators(num_dec.toString(2));
+		document.getElementById("oct").value = octWithSeperators(num_dec.toString(8));
 	    document.getElementById("hex").value = num_dec.toString(16).toUpperCase();
 		
         break;
@@ -185,9 +185,9 @@ function convert(b) {
 		document.getElementById("not_valid_hex").innerHTML = "";
 					
 	    document.getElementById("addr").value = converted_ip;
-        document.getElementById("bin").value = num_dec.toString(2);
-		document.getElementById("oct").value = num_dec.toString(8);
-	    document.getElementById("dec").value = num_dec.toString(10);
+        document.getElementById("bin").value = binWithSeperators(num_dec.toString(2));
+		document.getElementById("oct").value = octWithSeperators(num_dec.toString(8));
+	    document.getElementById("dec").value = decWithSeperators(num_dec.toString(10));
 		
         break;  
 	}		
@@ -206,6 +206,18 @@ function dec_to_ip(num_dec) {
            ((num_dec>>16)&0xff) + '.' +
            ((num_dec>>8)&0xff) + '.' + 
            (num_dec&0xff);		
+}
+
+function binWithSeperators(x) {
+    return x.replace(/\B(?=(\d{4})+(?!\d))/g, " ");
+}
+
+function octWithSeperators(x) {
+    return x.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+function decWithSeperators(x) {
+    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 window.onload = convert("addr");
