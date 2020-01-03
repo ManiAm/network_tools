@@ -207,3 +207,5 @@ function dec_to_ip(num_dec) {
            ((num_dec>>8)&0xff) + '.' + 
            (num_dec&0xff);		
 }
+
+window.onload = convert("addr");
