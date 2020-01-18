@@ -50,6 +50,14 @@ function vlsm() {
         return
     }
     document.getElementById("not_valid_ip").innerHTML = "";
+	
+	var o = document.getElementById("nets").innerHTML;
+	if(isNaN(o) || o <= 0) {
+	    document.getElementById("not_valid_subnet").innerHTML = "<b>Subnet size is empty!</b>";
+		return;
+	}
+    document.getElementById("not_valid_subnet").innerHTML = "";
+	
     var n = return_slash(h);
     var g = find_hosts(n);
     var m = return_ip(h);
@@ -57,8 +65,12 @@ function vlsm() {
     var c = find_net_add(m, q);
     var f = find_wildcard(q);
     var p = find_broadcast(f, m);
-    var o = document.getElementById("nets").innerHTML;
-    var a = sum_hosts(o);
+    
+	var a = sum_hosts(o);
+	if(a == -1) {
+		return;
+	}	
+	
     var d = ordered_hosts(o);
     var s = "<p>The network " + c[0] + "." + c[1] + "." + c[2] + "." + c[3] + "/" + n + " has " + g + " hosts.<br>Your subnets need " + a + " hosts.</p>";
     
@@ -89,7 +101,7 @@ function vlsm() {
     t += "</table>";
 	
     if (k > g + 2) {
-        s += "<span style='background-color:tomato;'>Looks like those subnets will not fit into that network!</span><br>"
+        s += "<span style='background-color:yellow;'>Looks like those subnets will not fit into that network!</span><br>"
 		t = ""
     }
 	
@@ -194,6 +206,10 @@ function sum_hosts(a) {
     for (var c = 1; c <= a; c++) {
         var b = "hosts" + c;
         b = parseInt(document.getElementById(b).value);
+		if(isNaN(b) || b <= 0) {
+	        document.getElementById("ans").innerHTML = t = "<span style='background-color:yellow;'>Number of hosts is not valid!</span><br>";
+		    return -1;
+	    }
         if (b >= 1) {
             d += b
         }
